@@ -1,4 +1,0 @@
-grequests
-bs4
-lxml
-requests
