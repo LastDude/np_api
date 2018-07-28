@@ -1,3 +1,5 @@
+[![Github All Releases](https://img.shields.io/github/downloads/LastDude/np_api/total.svg)]()
+
 ### Warning
 This is just a prototype, well prototypes are meant to be thrown away.
 But I'm to lazy right now.
