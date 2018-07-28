@@ -20,8 +20,13 @@ np = npApi()
 
 # yieldTags _sort= True -> Popular | _sort = False -> Alphabetical
 # Please use this only if you want to fetch all available tags and then save it.
+# First 25
+i = 0
 for tag in np.yieldGroups(_sort=False):
   print(tag)  # {"name": **, "count": **, "id": ** }
+  if i == 24:
+    break
+  i+=1
 
 # Same for groups:
 np.yieldGroups()
@@ -64,20 +69,34 @@ print(medium)
 query = np.search(title=None, characters=[], parodies=["sword art online"], artist=[], groups=[],
                     tags=["monster", "demon"], sort=True)
 
+# First 25
+i = 0
 for medium in query:
-    print(medium)
+  print(medium)
+  if i == 24:
+    break
+  i+=1
 
 # Well nothing to say you can explicity search for tags etc. only
 query = np.search(tags=["monster", "demon"])
 
+i = 0
 for medium in query:
-    print(medium)
+  print(medium)
+  if i == 24:
+    break
+  i+=1
 
 # You can even exclude with "-"
 query = np.search(tags=["monster", "-demon"])
 
+# First 25
+i = 0
 for medium in query:
-    print(medium)
+  print(medium)
+  if i == 24:
+    break
+  i+=1
 
 ```
 
