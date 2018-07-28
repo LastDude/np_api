@@ -6,6 +6,10 @@ Also it is not well tested and there is actually no exception handling in the wh
 In conclusion it is quick and dirty, but don't use it in "production".
 
 Also I would like to thank spice a wrapper for the MAL API, which i got a lot of inspiration from.
+
+#### Contact:
+LetsPlayHansLP@gmail.com
+
 ### How to install:
 Download the wheel-file:
 [releases](https://github.com/LastDude/np_api/releases)
