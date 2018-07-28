@@ -8,6 +8,7 @@ In conclusion it is quick and dirty, but don't use it in "production".
 Also I would like to thank spice a wrapper for the MAL API, which i got a lot of inspiration from.
 ### How to install:
 Download the wheel-file:
+[releases](https://github.com/LastDude/np_api/releases)
 
 Install using pip:
 `pip install np_api*.whl`
