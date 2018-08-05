@@ -29,20 +29,20 @@ np = npApi()
 # Please use this only if you want to fetch all available tags and then save it.
 # First 25
 i = 0
-for tag in np.yieldGroups(_sort=False):
+for tag in np.yieldGroup(sort=False):
   print(tag)  # {"name": **, "count": **, "id": ** }
   if i == 24:
     break
   i+=1
 
 # Same for groups:
-np.yieldGroups()
+np.yieldGroup()
 # Artists
-np.yieldArtists()
+np.yieldArtist()
 # Characters
-np.yieldCharacters()
+np.yieldCharacter()
 # Parodies
-np.yieldParodies()
+np.yieldParodie()
 
 
 # Next up you can pick a random one
@@ -58,13 +58,13 @@ print(medium.thumbnail)       # dictionary with url of the thumbnail and picture
 print(medium.numberPages)     # Number of Pages from the medium
 print(medium.numberFavorites) # Number of marked favorites
 print(medium.pages)           # List with Page urls (pictures) and picture information. Example: [{'h': **, 't': '*', 'w': **}, {'h': **, 't': '*', 'w': **}, {'urls': ['**', '**', ....]}]
-print(medium.tags)            # List with all tags of this medium. Example: [{'name': '***', 'count': **, 'id': **}, {'name': '***', 'count': **, 'id': **}, ...]
-print(medium.characters)       # List with all characters of this medium. Example: same as above
-print(medium.artists)          # List with all artists of this medium. Example: same as above
-print(medium.groups)          # List with all groups of this medium. Example: same as above
-print(medium.parodies)        # List with all parodies of this medium. Example: same as above
+print(medium.tag)            # List with all tags of this medium. Example: [{'name': '***', 'count': **, 'id': **}, {'name': '***', 'count': **, 'id': **}, ...]
+print(medium.character)       # List with all characters of this medium. Example: same as above
+print(medium.artist)          # List with all artists of this medium. Example: same as above
+print(medium.group)          # List with all groups of this medium. Example: same as above
+print(medium.parodie)        # List with all parodies of this medium. Example: same as above
 print(medium.language)        # List with all languages of this medium. Example:
-print(medium.categories)      # List with all categories of this medium. Example:
+print(medium.categorie)      # List with all categories of this medium. Example:
 print(medium)                 # String representation of this medium. Prints english title or first item in dic
 
 # Or you can perform a search explicit with id:
@@ -108,7 +108,6 @@ for medium in query:
 ```
 
 ### Things TODO:
-* correct naming
 * documentation
 * testing
 * page_start and page_end in searching

@@ -37,11 +37,11 @@ class Medium:
         self._id = None
         self._mediaID = None
         self._title = None
-        self._characters = None
-        self._parodies = None
+        self._character = None
+        self._parodie = None
         self._artist = None
-        self._groups = None
-        self._tags = None
+        self._group = None
+        self._tag = None
         self._language = None
         self._categorie = None
         self._thumbnail = None
@@ -165,7 +165,7 @@ class Medium:
             logging.debug("Set number of Pages: %s", self._numberPages)
         return self._numberPages
 
-    def getInfos(self, type):
+    def _getInfos(self, type):
         """
         helper method to get informations out of the json
         """
@@ -179,54 +179,54 @@ class Medium:
         return result
 
     @property
-    def tags(self):
+    def tag(self):
         """
         returns tag informations
         """
-        if self._tags is None:
-            self._tags = self.getInfos(type=Constants.TAG)
+        if self._tag is None:
+            self._tag = self._getInfos(type=Constants.TAG)
             logging.debug("Set tags")
-        return self._tags
+        return self._tag
 
     @property
-    def characters(self):
+    def character(self):
         """
         returns character informations
         """
-        if self._characters is None:
-            self._characters = self.getInfos(type=Constants.CHARACTER)
+        if self._character is None:
+            self._character = self._getInfos(type=Constants.CHARACTER)
             logging.debug("Set characters")
-        return self._characters
+        return self._character
 
     @property
-    def artists(self):
+    def artist(self):
         """
         returns artists information
         """
         if self._artist is None:
-            self._artist = self.getInfos(type=Constants.ARTIST)
+            self._artist = self._getInfos(type=Constants.ARTIST)
             logging.debug("Set artists")
         return self._artist
 
     @property
-    def groups(self):
+    def group(self):
         """
         returns groups information
         """
-        if self._groups is None:
-            self._groups = self.getInfos(type=Constants.GROUP)
+        if self._group is None:
+            self._group = self._getInfos(type=Constants.GROUP)
             logging.debug("Set groups")
-        return self._groups
+        return self._group
 
     @property
-    def parodies(self):
+    def parodie(self):
         """
         returns parodies information
         """
-        if self._parodies is None:
-            self._parodies = self.getInfos(type=Constants.PARODY)
+        if self._parodie is None:
+            self._parodie = self._getInfos(type=Constants.PARODY)
             logging.debug("Set parodies")
-        return self._parodies
+        return self._parodie
 
     @property
     def language(self):
@@ -234,17 +234,17 @@ class Medium:
         returns language information
         """
         if self._language is None:
-            self._language = self.getInfos(type=Constants.LANGUAGE)
+            self._language = self._getInfos(type=Constants.LANGUAGE)
             logging.debug("Set language")
         return self._language
 
     @property
-    def categories(self):
+    def categorie(self):
         """
         returns categories information
         """
         if self._categorie is None:
-            self._categorie = self.getInfos(type=Constants.CATEGORY)
+            self._categorie = self._getInfos(type=Constants.CATEGORY)
             logging.debug("Set categories")
         return self._categorie
 

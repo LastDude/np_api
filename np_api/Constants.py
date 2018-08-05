@@ -63,9 +63,9 @@ HREF = "href"
 LXML = "lxml"
 
 
-class Affiliations(Enum):
-    TAGS = 1
-    ARTISTS = 2
-    CHARACTERS = 3
-    PARODIES = 4
-    GROUPS = 5
+class Affiliation(Enum):
+    TAG = 1
+    ARTIST = 2
+    CHARACTER = 3
+    PARODIE = 4
+    GROUP = 5

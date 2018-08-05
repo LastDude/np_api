@@ -8,49 +8,51 @@ from . import objects
 
 class np_api:
     """
-    Main-module
+    Main-module for using API
+    
+    
     """
 
     def __init__(self):
         pass
 
-    def yieldTags(self, _sort=False):
+    def yieldTag(self, sort=False):
         """
-        returns a generator of tag elements
+        returns a generator of tag elements.
         """
-        generator = helper.getLists(Constants.Affiliations.TAGS, _sort)
+        generator = helper.getList(Constants.Affiliation.TAG, sort)
         for x in generator:
             yield x
 
-    def yieldGroups(self, _sort=False):
+    def yieldGroup(self, sort=False):
         """
-        returns a generator of group elements
+        returns a generator of group elements.
         """
-        generator = helper.getLists(Constants.Affiliations.GROUPS, _sort)
+        generator = helper.getList(Constants.Affiliation.GROUP, sort)
         for x in generator:
             yield x
 
-    def yieldArtists(self, _sort=False):
+    def yieldArtist(self, sort=False):
         """
-        returns a generator of artist elements
+        returns a generator of artist elements.
         """
-        generator = helper.getLists(Constants.Affiliations.ARTISTS, _sort)
+        generator = helper.getList(Constants.Affiliation.ARTIST, sort)
         for x in generator:
             yield x
 
-    def yieldCharacters(self, _sort=False):
+    def yieldCharacter(self, sort=False):
         """
-        returns a generator of character elements
+        returns a generator of character elements.
         """
-        generator = helper.getLists(Constants.Affiliations.CHARACTERS, _sort)
+        generator = helper.getList(Constants.Affiliation.CHARACTER, sort)
         for x in generator:
             yield x
 
-    def yieldParodies(self, _sort=False):
+    def yieldParodie(self, sort=False):
         """
-        returns a generator of parodies elements
+        returns a generator of parodies elements.
         """
-        generator = helper.getLists(Constants.Affiliations.PARODIES, _sort)
+        generator = helper.getList(Constants.Affiliation.PARODIE, sort)
         for x in generator:
             yield x
 

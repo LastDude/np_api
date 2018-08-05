@@ -7,33 +7,38 @@ import requests
 Provides helper methods for parsing and using the unofficial api.
 """
 
-
-def createMedium(_id):
+def createMedium(id):
     """
-    creates a Medium from provided _id
+    Creates a medium from provided id.
+    
+    @param id identificator of the medium
+    @return medium with provided id
     """
-    result = requests.get(Constants.API_CALL_ID + _id)
+    result = requests.get(Constants.API_CALL_ID + id)
     return objects.Medium(result.text)
 
 
-def getLists(affiliations, _sorted=False):
+def getList(affiliation, sort=False):
     """
-    creates a generator for receiving.
+    creates a generator for receiving a list of affiliation.
+    
+    @param affiliation sets the type of the list.
+    @return generator with list elements of affiliation typ.
     """
     strategie = None
-    if affiliations == Constants.Affiliations.TAGS:
-        strategie = TagStrategie(_sorted)
-    elif affiliations == Constants.Affiliations.ARTISTS:
-        strategie = ArtistStrategie(_sorted)
-    elif affiliations == Constants.Affiliations.CHARACTERS:
-        strategie = CharacterStrategie(_sorted)
-    elif affiliations == Constants.Affiliations.PARODIES:
-        strategie = ParodieStrategie(_sorted)
-    elif affiliations == Constants.Affiliations.GROUPS:
-        strategie = GroupStrategie(_sorted)
+    if affiliation == Constants.Affiliation.TAG:
+        strategie = TagStrategie(sort)
+    elif affiliation == Constants.Affiliation.ARTIST:
+        strategie = ArtistStrategie(sort)
+    elif affiliation == Constants.Affiliation.CHARACTER:
+        strategie = CharacterStrategie(sort)
+    elif affiliation == Constants.Affiliation.PARODIE:
+        strategie = ParodieStrategie(sort)
+    elif affiliation == Constants.Affiliation.GROUP:
+        strategie = GroupStrategie(sort)
     else:
         raise TypeError
-    generator = strategie.getLists()
+    generator = strategie.getList()
     for entry in generator:
         text = entry.text.rsplit(' ', 1)
         yield {Constants.NAME: text[0], Constants.COUNT: text[1][1:-1],
@@ -44,10 +49,10 @@ class AbstractStrategie:
     """
     Uses Strategie Pattern to get list of Constants.Affiliations types
     """
-    def __init__(self, _sorted):
-        self._sorted = _sorted
+    def __init__(self, sort):
+        self._sort = sort
 
-    def getLists(self):
+    def getList(self):
         """
         Schablonenmethode for providing the generator
         """
@@ -82,17 +87,17 @@ class TagStrategie(AbstractStrategie):
     """
     Strategie for getting tags
     """
-    def __init__(self, _sorted):
-        super().__init__(_sorted)
+    def __init__(self, sort):
+        super().__init__(sort)
 
     def getFirstSite(self):
-        if self._sorted:
+        if self._sort:
             return requests.get(Constants.TAGS_URL_SORTED + str(1))
         else:
             return requests.get(Constants.TAGS_URL + str(1))
 
     def createUrls(self, lastPage):
-        if self._sorted:
+        if self._sort:
             return [(Constants.TAGS_URL_SORTED + str(i)) for i in range(2, lastPage + 1)]
         else:
             return [(Constants.TAGS_URL + str(i)) for i in range(2, lastPage + 1)]
@@ -102,17 +107,17 @@ class ArtistStrategie(AbstractStrategie):
     """
     Strategie for getting artists
     """
-    def __init__(self, _sorted):
-        super().__init__(_sorted)
+    def __init__(self, sort):
+        super().__init__(sort)
 
     def getFirstSite(self):
-        if self._sorted:
+        if self._sort:
             return requests.get(Constants.ARTISTS_URL_SORTED + str(1))
         else:
             return requests.get(Constants.ARTISTS_URL + str(1))
 
     def createUrls(self, lastPage):
-        if self._sorted:
+        if self._sort:
             return [(Constants.ARTISTS_URL_SORTED + str(i)) for i in range(2, lastPage + 1)]
         else:
             return [(Constants.ARTISTS_URL + str(i)) for i in range(2, lastPage + 1)]
@@ -122,17 +127,17 @@ class CharacterStrategie(AbstractStrategie):
     """
     Strategie for getting characters
     """
-    def __init__(self, _sorted):
-        super().__init__(_sorted)
+    def __init__(self, sort):
+        super().__init__(sort)
 
     def getFirstSite(self):
-        if self._sorted:
+        if self._sort:
             return requests.get(Constants.CHARACTERS_URL_SORTED + str(1))
         else:
             return requests.get(Constants.CHARACTERS_URL + str(1))
 
     def createUrls(self, lastPage):
-        if self._sorted:
+        if self._sort:
             return [(Constants.CHARACTERS_URL_SORTED + str(i)) for i in range(2, lastPage + 1)]
         else:
             return [(Constants.CHARACTERS_URL + str(i)) for i in range(2, lastPage + 1)]
@@ -142,17 +147,17 @@ class ParodieStrategie(AbstractStrategie):
     """
     Strategie for getting parodies
     """
-    def __init__(self, _sorted):
-        super().__init__(sorted)
+    def __init__(self, sort):
+        super().__init__(sort)
 
     def getFirstSite(self):
-        if self._sorted:
+        if self._sort:
             return requests.get(Constants.PARODIES_URL_SORTED + str(1))
         else:
             return requests.get(Constants.PARODIES_URL + str(1))
 
     def createUrls(self, lastPage):
-        if self._sorted:
+        if self._sort:
             return [(Constants.PARODIES_URL_SORTED + str(i)) for i in range(2, lastPage + 1)]
         else:
             return [(Constants.PARODIES_URL + str(i)) for i in range(2, lastPage + 1)]
@@ -162,17 +167,17 @@ class GroupStrategie(AbstractStrategie):
     """
     Strategie for getting groups
     """
-    def __init__(self, _sorted):
-        super().__init__(_sorted)
+    def __init__(self, sort):
+        super().__init__(sort)
 
     def getFirstSite(self):
-        if self._sorted:
+        if self._sort:
             return requests.get(Constants.GROUPS_URL_SORTED + str(1))
         else:
             return requests.get(Constants.GROUPS_URL + str(1))
 
     def createUrls(self, lastPage):
-        if self._sorted:
+        if self._sort:
             return [(Constants.GROUPS_URL_SORTED + str(i)) for i in range(2, lastPage + 1)]
         else:
             return [(Constants.GROUPS_URL + str(i)) for i in range(2, lastPage + 1)]
